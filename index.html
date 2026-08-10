@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>양재역 청년안심주택 입주 후 제출서류 접수</title>
+<style>
+  :root {
+    --primary: #c6613f;
+    --primary-dark: #a04e32;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --border: #dde3ea;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --danger: #d64545;
+    --success: #1a8f4d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 24px 16px 60px;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 20px; }
+  header h1 { font-size: 19px; margin: 0 0 6px; color: var(--primary-dark); }
+  header p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .info-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .info-item {
+    flex: 1;
+    background: var(--primary);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: #fff;
+    text-align: center;
+  }
+  .info-label {
+    display: block;
+    font-size: 11px;
+    opacity: 0.85;
+    margin-bottom: 3px;
+  }
+  .info-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .notice {
+    background: #fff7ed;
+    border: 1px solid #fcd9a8;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .notice b { color: #b45309; }
+  .notice ul { margin: 6px 0 0; padding-left: 18px; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .field { margin-bottom: 18px; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  input[type="text"]:focus { outline: none; border-color: var(--primary); }
+
+  .file-input {
+    border: 1.5px dashed var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    background: #fafbfc;
+    transition: border-color .15s;
+  }
+  .file-input.has-file { border-color: var(--primary); background: #eef4fc; }
+  .file-input input { display: none; }
+  .file-input .label-text { font-size: 13px; color: var(--muted); }
+  .file-input .file-name { font-size: 13px; color: var(--primary-dark); font-weight: 600; word-break: break-all; }
+
+  .confirm {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .confirm input { margin-top: 3px; }
+
+  button.submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  button.submit:disabled { background: #9ca3af; cursor: not-allowed; }
+
+  .status {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+    line-height: 1.5;
+  }
+  .status.ok { display: block; background: #ecfdf3; color: var(--success); border: 1px solid #a6e6c2; }
+  .status.err { display: block; background: #fef2f2; color: var(--danger); border: 1px solid #fca5a5; }
+  .status.loading { display: block; background: #eff6ff; color: var(--primary-dark); border: 1px solid #bfdbfe; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>양재역 청년안심주택<br>입주 후 제출서류 접수</h1>
+    <p>호수와 첨부서류를 입력해 제출해주세요</p>
+  </header>
+
+  <div class="info-bar">
+    <div class="info-item"><span class="info-label">접수기간</span><span class="info-value">입주 후 2주 이내</span></div>
+    <div class="info-item"><span class="info-label">문의전화</span><span class="info-value">02-000-0000</span></div>
+  </div>
+
+  <div class="notice">
+    <b>제출 전 꼭 확인해주세요</b>
+    <ul>
+      <li>첨부하는 <b>전입신고 등본, 혼인증명서</b>의 <b>주민등록번호 뒷자리 7자리는 반드시 가린 후</b> 업로드해주세요.</li>
+      <li><b>전입신고 등본은 필수</b>이며, <b>혼인증명서는 예비신혼부부만 선택 제출</b>합니다.</li>
+      <li>파일 형식: JPG, PNG, PDF (파일당 최대 8MB)</li>
+      <li>제출 후에는 담당자 이메일로 자동 접수되며, 별도 확인 연락은 없을 수 있습니다.</li>
+    </ul>
+  </div>
+
+  <form class="card" id="submitForm">
+    <div class="field">
+      <label for="ho">호수 <span style="color:var(--danger)">*</span></label>
+      <input type="text" id="ho" inputmode="numeric" placeholder="예: 1502" required>
+      <div class="hint">숫자만 입력해주세요.</div>
+    </div>
+
+    <div class="field">
+      <label>전입신고 등본 <span style="color:var(--danger)">*</span></label>
+      <div class="file-input" id="fi_movein">
+        <input type="file" id="moveInCert" accept="image/*,.pdf" required>
+        <div class="label-text" id="ft_movein">탭하여 파일 선택 (주민번호 뒷자리 가림 필수)</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>혼인증명서(예비신혼부부) <span style="color:var(--muted); font-weight:500;">(선택)</span></label>
+      <div class="file-input" id="fi_marriage">
+        <input type="file" id="marriageCert" accept="image/*,.pdf">
+        <div class="label-text" id="ft_marriage">탭하여 파일 선택 (주민번호 뒷자리 가림 필수)</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="confirm">
+        <input type="checkbox" id="maskConfirmed" required>
+        <label for="maskConfirmed" style="margin:0; font-weight:500;">
+          첨부한 서류의 주민등록번호 뒷자리를 모두 가렸음을 확인합니다.
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" class="submit" id="submitBtn">제출하기</button>
+    <div class="status" id="status"></div>
+  </form>
+</div>
+
+<script>
+  // ⚠️ 배포 후 Apps Script 웹앱 URL로 교체하세요 (README.md 참고)
+  var WEBAPP_URL = 'https://script.google.com/macros/s/여기에_배포된_웹앱_ID를_입력/exec';
+
+  function bindFilePreview(inputId, boxId, textId) {
+    var input = document.getElementById(inputId);
+    var box = document.getElementById(boxId);
+    var text = document.getElementById(textId);
+    input.addEventListener('change', function () {
+      if (input.files && input.files[0]) {
+        box.classList.add('has-file');
+        text.textContent = input.files[0].name;
+        text.className = 'file-name';
+      } else {
+        box.classList.remove('has-file');
+        text.textContent = '탭하여 파일 선택 (주민번호 뒷자리 가림 필수)';
+        text.className = 'label-text';
+      }
+    });
+    box.addEventListener('click', function (e) {
+      if (e.target !== input) input.click();
+    });
+  }
+  bindFilePreview('marriageCert', 'fi_marriage', 'ft_marriage');
+  bindFilePreview('moveInCert', 'fi_movein', 'ft_movein');
+
+  function fileToBase64(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var result = reader.result; // data:mime;base64,XXXX
+        var base64 = result.split(',')[1];
+        resolve({ base64: base64, mimeType: file.type || 'application/octet-stream', fileName: file.name });
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  var form = document.getElementById('submitForm');
+  var statusEl = document.getElementById('status');
+  var submitBtn = document.getElementById('submitBtn');
+
+  function showStatus(type, msg) {
+    statusEl.className = 'status ' + type;
+    statusEl.textContent = msg;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var ho = document.getElementById('ho').value.trim();
+    var marriageFile = document.getElementById('marriageCert').files[0];
+    var moveInFile = document.getElementById('moveInCert').files[0];
+    var maskConfirmed = document.getElementById('maskConfirmed').checked;
+
+    if (!ho || !/^[0-9]+$/.test(ho)) {
+      showStatus('err', '호수를 숫자로 정확히 입력해주세요.');
+      return;
+    }
+    if (!moveInFile) {
+      showStatus('err', '전입신고 등본을 첨부해주세요.');
+      return;
+    }
+    if (!maskConfirmed) {
+      showStatus('err', '주민등록번호 뒷자리 마스킹 확인에 체크해주세요.');
+      return;
+    }
+
+    var MAX_BYTES = 8 * 1024 * 1024;
+    if (moveInFile.size > MAX_BYTES || (marriageFile && marriageFile.size > MAX_BYTES)) {
+      showStatus('err', '파일 용량은 개당 최대 8MB까지 가능합니다.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    showStatus('loading', '제출 중입니다. 잠시만 기다려주세요...');
+
+    var fileTasks = [fileToBase64(moveInFile)];
+    if (marriageFile) fileTasks.push(fileToBase64(marriageFile));
+
+    Promise.all(fileTasks)
+      .then(function (files) {
+        var payload = {
+          ho: ho,
+          maskConfirmed: true,
+          moveInCert: files[0]
+        };
+        if (files[1]) payload.marriageCert = files[1];
+
+        return fetch(WEBAPP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // GAS CORS 우회용
+          body: JSON.stringify(payload)
+        });
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data.success) {
+          showStatus('ok', data.message || '제출이 완료되었습니다.');
+          form.reset();
+          document.getElementById('fi_marriage').classList.remove('has-file');
+          document.getElementById('fi_movein').classList.remove('has-file');
+          document.getElementById('ft_marriage').textContent = '탭하여 파일 선택 (주민번호 뒷자리 가림 필수)';
+          document.getElementById('ft_marriage').className = 'label-text';
+          document.getElementById('ft_movein').textContent = '탭하여 파일 선택 (주민번호 뒷자리 가림 필수)';
+          document.getElementById('ft_movein').className = 'label-text';
+        } else {
+          showStatus('err', data.message || '제출 중 오류가 발생했습니다.');
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(function (err) {
+        showStatus('err', '네트워크 오류가 발생했습니다. 다시 시도해주세요.');
+        submitBtn.disabled = false;
+      });
+  });
+</script>
+</body>
+</html>
