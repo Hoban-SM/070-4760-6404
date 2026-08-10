@@ -156,7 +156,7 @@
 
   <div class="info-bar">
     <div class="info-item"><span class="info-label">접수기간</span><span class="info-value">입주 후 2주 이내</span></div>
-    <div class="info-item"><span class="info-label">문의전화</span><span class="info-value">070-4760-6404</span></div>
+    <div class="info-item"><span class="info-label">문의전화</span><span class="info-value">02-000-0000</span></div>
   </div>
 
   <div class="notice">
@@ -208,7 +208,9 @@
 
 <script>
   // ⚠️ 배포 후 Apps Script 웹앱 URL로 교체하세요 (README.md 참고)
-  var WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbztW92xkEvoam7hGv0L2xVziO_zadK5m2Pa3020oGcQcmerIX36KaEycunYTr_aoQJKQw/exec';
+  var WEBAPP_URL = 'https://script.google.com/macros/s/여기에_배포된_웹앱_ID를_입력/exec';
+  // ⚠️ Code.gs의 setupSecrets_()에 등록한 것과 동일한 토큰으로 교체하세요
+  var SHARED_TOKEN = '여기에_원하는_임의문자열_입력';
 
   function bindFilePreview(inputId, boxId, textId) {
     var input = document.getElementById(inputId);
@@ -243,6 +245,14 @@
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
+  }
+
+  // 제출자의 공인 IP 조회 (외부 API 실패 시에도 제출은 계속 진행)
+  function getClientIp() {
+    return fetch('https://api.ipify.org?format=json')
+      .then(function (res) { return res.json(); })
+      .then(function (data) { return data.ip; })
+      .catch(function () { return '확인불가'; });
   }
 
   var form = document.getElementById('submitForm');
@@ -284,17 +294,19 @@
     submitBtn.disabled = true;
     showStatus('loading', '제출 중입니다. 잠시만 기다려주세요...');
 
-    var fileTasks = [fileToBase64(moveInFile)];
+    var fileTasks = [fileToBase64(moveInFile), getClientIp()];
     if (marriageFile) fileTasks.push(fileToBase64(marriageFile));
 
     Promise.all(fileTasks)
-      .then(function (files) {
+      .then(function (results) {
         var payload = {
           ho: ho,
           maskConfirmed: true,
-          moveInCert: files[0]
+          moveInCert: results[0],
+          clientIp: results[1],
+          token: SHARED_TOKEN
         };
-        if (files[1]) payload.marriageCert = files[1];
+        if (results[2]) payload.marriageCert = results[2];
 
         return fetch(WEBAPP_URL, {
           method: 'POST',
